@@ -21,26 +21,33 @@ pip install flash-attn --no-build-isolation
 
 ---
 ## 🗂 Directory Structure
+
+```
 project_root/  
-├── pyproject. toml			# environment info
-├── model/					# Folder with ferret model
-│   ├── ferret-7b-v1-3
-│   └── ferret-13b-v1-3
-├── images/					# Folder with images 
-│   └── `*.jpg` / `*.png`
-├── refexp_result/				# Folder with output
-│   └── finetune_refcocog_test/
-│       └──`0_of_1.jsonl`
-├── download/					# place to unzip the downloaded
+├── pyproject. toml			# environment info  
+├── model/					# Folder with ferret model  
+│   ├── ferret-7b-v1-3  
+│   └── ferret-13b-v1-3  
+├── images/					# Folder with images   
+│   └── `*.jpg` / `*.png`  
+├── refexp_result/				# Folder with output  
+│   └── finetune_refcocog_test/  
+│       └──`0_of_1.jsonl`  
+├── download/					# place to unzip the downloaded  
 ├── VG-RS-question.json			# Input questions and image paths
-├── format_question.py				# format input
-├── format_ferret_answer.py			# format answer
-...
+├── VG-RS-refcoco-format.json			# Input after format  
+├── format_question.py				# format input  
+├── format_ferret_answer.py			# format answer  
+...  
+```
 
 ---
 ## 🔧 Model and Processor Setup
 ### 🧠 Download Model with ModelScope
-first download weights of Vicuna following the instructions [here](https://github.com/lm-sys/FastChat#model-weights). Vicuna v1.3 is used in FERRET. Then download the prepared offsets of weights: [7B](https://docs-assets.developer.apple.com/ml-research/models/ferret/ferret-7b/ferret-7b-delta.zip), [13B](https://docs-assets.developer.apple.com/ml-research/models/ferret/ferret-13b/ferret-13b-delta.zip) using `wget` or `curl`, and unzip the downloaded offsets to the `download` folder. Lastly, apply the offset to the Vicuna's weight by running the following script:
+first download weights of Vicuna following the instructions [here](https://github.com/lm-sys/FastChat#model-weights). Vicuna v1.3 is used in FERRET.  
+Then download the prepared offsets of weights: [7B](https://docs-assets.developer.apple.com/ml-research/models/ferret/ferret-7b/ferret-7b-delta.zip), [13B](https://docs-assets.developer.apple.com/ml-research/models/ferret/ferret-13b/ferret-13b-delta.zip) using `wget` or `curl`, and unzip the downloaded offsets to the `download` folder.  
+Lastly, apply the offset to the Vicuna's weight by running the following script:  
+
 ```Shell
 # 7B
 python3 -m ferret.model.apply_delta \
@@ -59,13 +66,13 @@ python3 -m ferret.model.apply_delta \
 ### ✍️ Prepare Input JSON
 The file `VG-RS-question.json` should be a list of entries in this format:
 
-```json
-[ 
+```
+[
   { 
     "image_path": "images\example.jpg", 
-    "question": "What object is next to the red car?" 
-  }, 
-  ... 
+    "question": "What object is next to the red car?"
+    },
+  ...
 ]
 ```
 
@@ -104,14 +111,14 @@ python format_ferret_answer.py
 ```
 The result will be saved as a JSON file containing predicted bounding boxes for each input:
 
-```json
-[ 
-  { 
-    "image_path": "images\example.jpg", 
-    "question": "What object is next to the red car?", 
-    "result": [[x1, y1], [x2, y2]] 
-  }, 
-  ... 
+```
+[   
+  {
+    "image_path": "images\example.jpg",     
+    "question": "What object is next to the red car?",    
+    "result": [[x1, y1], [x2, y2]]     
+  },    
+  ...     
 ]
 ```
 
