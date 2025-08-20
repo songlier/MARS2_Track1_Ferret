@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ferret"
+version = "1.0.1"
+description = "Towards GPT-4 like large language and visual assistant."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "einops==0.6.1",
+    "einops-exts==0.0.4",
+    "fastapi==0.110.1",
+    "gradio==4.20.0",
+    "gradio_client==0.11.0",
+    "markdown2[all]==2.4.13",
+    "numpy==1.26.4",
+    "requests==2.31.0",
+    "sentencepiece==0.1.99",
+    "tokenizers==0.13.3",
+    "torch==2.1.2",
+    "torchvision==0.16.2",
+    "uvicorn==0.29.0",
+    "wandb==0.16.6",
+    "shortuuid==1.0.11",
+    "httpx==0.24.1",
+    "deepspeed",
+    "peft==0.4.0",
+    "transformers@git+https://github.com/huggingface/transformers.git@cae78c46",
+    "accelerate==0.21.0",
+    "bitsandbytes==0.41.0",
+    "scikit-learn==1.5.0",
+    "timm==0.6.13",
+    "openai==1.31.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/apple/ml-ferret"
+
+[tool.setuptools.packages.find]
+exclude = ["assets*", "benchmark*", "docs", "dist*", "playground*", "scripts*", "tests*"]
+
+[tool.wheel]
+exclude = ["assets*", "benchmark*", "docs", "dist*", "playground*", "scripts*", "tests*"]
