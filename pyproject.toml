@@ -23,7 +23,7 @@ dependencies = [
     "requests==2.31.0",
     "sentencepiece==0.1.99",
     "tokenizers==0.13.3",
-    "torch==2.1.2",
+    "torch==2.8.0",
     "torchvision==0.16.2",
     "uvicorn==0.29.0",
     "wandb==0.16.6",
